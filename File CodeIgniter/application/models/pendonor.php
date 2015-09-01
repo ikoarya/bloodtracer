@@ -92,6 +92,27 @@ Class Pendonor extends CI_Model {
 	}
 
 
+	function ambilgoldar($param, $num=0, $rand=false) {
+		$this->db->where( 'nomor_donor = '.$param );
+		if ($rand)
+			$this->db->order_by( 'rand()' );
+		if ($num != 0)
+			$query = $this->db->get('donor', $num);
+		else
+			$query = $this->db->get('donor');
+		return $query;
+	}
 
+	function updatetgldonor($kode, $tanggal, $jml_donor){
+		$item = array (
+			'jml_donor' => $jml_donor,
+			'terakhir_donor' => $tanggal
+		);
+		$this->db->where('nomor_donor', $kode);
+		if ($this->db->update('donor', $item))
+			return true;
+		else
+			return false;
+	}
 	
 }

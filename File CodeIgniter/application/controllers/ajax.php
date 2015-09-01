@@ -17,6 +17,14 @@ class Ajax extends CI_Controller {
     $query = $this->Pendonor->ambilantrian($dateNow)+1;
     echo $query; 
   }
+
+  public function ambilkodedonor($kode){
+    $this->load->model('Pendaftaran');
+    $query = $this->Pendaftaran->ambilkodedonor($kode);
+    echo json_encode($query->result());
+  }
+
+ 
 }
 
 /* End of file ajax.php */

@@ -170,7 +170,7 @@ Purchase: http://wrapbootstrap.com
                                             <span class="widget-caption">Registration Form</span>
                                         </div>
                                         <div class="widget-body">
-                                            <form id="registrationForm" method="post" class="form-horizontal"
+                                            <form id="registrationForm" method="post" class="form-horizontal" action="<?php echo base_url(); ?>datapendonor/daftar" 
                                                   data-bv-message="This value is not valid"
                                                   data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                                                   data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -181,7 +181,8 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Nomor Pendaftaran</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="nopendaftaran" id="nopendaftaran" value="10129384750001" disabled="true" />
+                                                        <input type="text" class="form-control" id="nopendaftaran" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="nopendaftaran1" id="nopendaftaran1"  />
                                                     </div>
                                                 </div>
 
@@ -235,6 +236,8 @@ Purchase: http://wrapbootstrap.com
                                                     <label class="col-lg-3 control-label">Tanggal Pendaftaran</label>
                                                     <div class="col-lg-6">
                                                         <input type="text" class="form-control" name="tgl" id="tgl" value="" disabled="true" />
+
+                                                        <input type="hidden" class="form-control" name="tgl1" id="tgl1" value="" />
                                                     </div>
                                                 </div>
 
@@ -242,6 +245,7 @@ Purchase: http://wrapbootstrap.com
                                                     <label class="col-lg-3 control-label">Waktu Pendaftaran</label>
                                                     <div class="col-lg-6">
                                                         <input type="text" class="form-control" name="waktu" id="waktu" value="" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="waktu1" id="waktu1" value="" />
                                                     </div>
                                                 </div>
 
@@ -299,8 +303,10 @@ Purchase: http://wrapbootstrap.com
 
         function generateDaftar(){
             var d = new Date();
-            var nomor = '101'+d.getDate()+ parseInt(d.getMonth()+1)+d.getFullYear()+ '0001';
+            var nomor = '101'+d.getDate()+ parseInt(d.getMonth()+1)+d.getFullYear()+ '000' + <?php echo $id;?>;
             $('#nopendaftaran').val(nomor);
+            $('#nopendaftaran1').val(nomor);
+//            document.getElementsByTagName('nopendaftaran').value = nomor;
         }
 
 
@@ -338,20 +344,34 @@ Purchase: http://wrapbootstrap.com
 
         function cekkodedonor(){
             var nilai = document.getElementById('kode').value;
+            var tanggal = getTanggal();
+            var waktu  = getWaktu();
 
             $.getJSON('<?php echo base_url(); ?>ajax/ambilriwayat/' + nilai,
               function (data) {                
                 $('#nama').val(data[0]["nama"]);
                 $('#jenkel').val(data[0]["jenis_kelamin"]);
                 $('#goldar').val(data[0]["golongan_darah"]);
+                $('#donorke').val(data[0]["jml_donor"]);
+                $('#terakhir').val(data[0]["terakhir_donor"]);
               }
             ).fail(function() {console.log('error fak')});
 
-            var tanggal = getTanggal();
-            var waktu  = getWaktu();
+            $.getJSON('<?php echo base_url(); ?>ajax/ambilantrian/' + tanggal,
+              function (data) {                
+                $('#nomor').val(data);
+              }
+            ).fail(function() {console.log('error fak')});
+
+
+            
             $('#tgl').val(tanggal);
             $('#waktu').val(waktu);
 
+            $('#tgl1').val(tanggal);
+            $('#waktu1').val(waktu);
+
+            
             
         }
 

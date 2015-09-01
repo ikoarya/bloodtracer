@@ -38,5 +38,21 @@
 
     }
 
+
+    public function daftar(){
+        $nopendaf = $this->input->post('nopendaftaran1');
+        $kode = $this->input->post('kode');
+        $tanggal = $this->input->post('tgl1');
+        $waktu = $this->input->post('waktu1');
+
+        $this->load->model('Pendonor');
+        if ($this->Pendonor->daftardonor($nopendaf, $kode, $tanggal, $waktu)) {
+            echo "berhasil";
+        }
+        else{
+            echo "gagal cak";
+        }
+    }
+
     
  }

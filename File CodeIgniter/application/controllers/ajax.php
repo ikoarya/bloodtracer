@@ -12,7 +12,11 @@ class Ajax extends CI_Controller {
     echo json_encode($query->result());
   }
 
-  
+  public function ambilantrian($dateNow){
+    $this->load->model('Pendonor');
+    $query = $this->Pendonor->ambilantrian($dateNow)+1;
+    echo $query; 
+  }
 }
 
 /* End of file ajax.php */

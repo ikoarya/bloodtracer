@@ -13,9 +13,16 @@ Class Pendonor extends CI_Model {
 	}
 
 	public function ambilmaxdaftar(){
-		$this->db->select_max('nomor_pendaftaran');
+		$this->db->select_max('id_daftar');
 		$query = $this->db->get('pendaftaran');
-		return $query->row()->nomor_pendaftaran;
+		return $query->row()->id_daftar;
+	}
+
+	public function ambilantrian($dateNow){
+		$sql = "SELECT COUNT(id_daftar) FROM pendaftaran WHERE tanggaldaftar = ?";
+		$query = $this->db->query($sql , array($dateNow));
+
+		return $query->num_rows();
 	}
 
 
@@ -52,6 +59,22 @@ Class Pendonor extends CI_Model {
 
 	}
 
+	public function daftardonor($nopendaf, $kode, $tanggal, $waktu){
+		$data = array(
+			'no_pendaftaran' => $nopendaf,
+			'nomor_donor' => $kode,
+			'tanggaldaftar' => $tanggal,
+			'waktudaftar' => $waktu
+			 );
+
+		if($this->db->insert('pendaftaran', $data)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	function ambildata(){
 		$query = json_encode($this->db->get( 'donor' ));
 		return $query;
@@ -67,6 +90,8 @@ Class Pendonor extends CI_Model {
 			$query = $this->db->get('donor');
 		return $query;
 	}
+
+
 
 	
 }

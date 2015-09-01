@@ -304,6 +304,7 @@ Purchase: http://wrapbootstrap.com
               function (data) {
                 
                 var identitas = data[0]["noid"];
+                var tanggalterakhir = data[0]["terakhir_donor"]
                // console.log(data[0]);
                 $('#nama').val(data[0]["nama"]);
                 $('#jenkel').val(data[0]["jenis_kelamin"]);
@@ -312,7 +313,7 @@ Purchase: http://wrapbootstrap.com
                 $('#goldar').val(data[0]["golongan_darah"]);
                 $('#rhesus').val(data[0]["rhesus"]);    
 
-                document.getElementById('identitas').innerHTML = '<tr><td>'+ identitas +' </td><td>'+ nilai +' </td><td> </td></tr>';
+                document.getElementById('identitas').innerHTML = '<tr><td>'+ identitas +' </td><td>'+ nilai +' </td><td>'+ tanggalterakhir +' </td></tr>';
 
               }
             ).fail(function() {console.log('error fak')});

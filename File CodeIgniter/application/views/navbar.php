@@ -73,27 +73,27 @@
                 <ul class="nav sidebar-menu">
                     <!--Dashboard-->
                     <li>
-                        <a href="home.html">
+                        <a href="<?php echo base_url(); ?>">
                             <i class="menu-icon glyphicon glyphicon-home"></i>
                             <span class="menu-text"> Home </span>
                         </a>
                     </li>
                     <!--Databoxes-->
                     <li>
-                        <a href="daftarbaru.html">
+                        <a href="<?php echo base_url(); ?>administrasi/daftarbaru">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Daftar Pendonor Baru </span>
                         </a>
                     </li>
                     <!--Widgets-->
                     <li>
-                        <a href="daftarlama.html">
+                        <a href="<?php echo base_url(); ?>administrasi/daftarlama">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Daftar Pendonor Lama </span>
                         </a>
                     </li>
                     <li>
-                        <a href="riwayatdonor.html">
+                        <a href="<?php echo base_url(); ?>administrasi/riwayat">
                             <i class="menu-icon fa fa-table"></i>
                             <span class="menu-text"> Riwayat Donor </span>
                         </a>
@@ -261,39 +261,45 @@
                     </li>
                     <!--Widgets-->
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/penelusuran">
+                        <a href="<?php echo base_url(); ?>bankdarah/penelusuran">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Penelusuran Kantung </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/karantina">
+                        <a href="<?php echo base_url(); ?>bankdarah/karantina">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Karantina Darah </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/cekpersediaan">
+                        <a href="<?php echo base_url(); ?>bankdarah/cekpersediaan">
                             <i class="menu-icon fa fa-table"></i>
                             <span class="menu-text"> Pengecekan Persediaan </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/pengirimandarah">
+                        <a href="<?php echo base_url(); ?>bankdarah/pengirimandarah">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Pengiriman Darah </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/permintaanrs">
+                        <a href="<?php echo base_url(); ?>bankdarah/permintaanrs">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Permintaan Darah R.S. </span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>linkcontrol/permintaanbd">
+                        <a href="<?php echo base_url(); ?>bankdarah/permintaanbd">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Permintaan Darah B.D. </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>bankdarah/lihatpermintaan">
+                            <i class="menu-icon fa fa-table"></i>
+                            <span class="menu-text"> Lihat Permintaan </span>
                         </a>
                     </li>
 

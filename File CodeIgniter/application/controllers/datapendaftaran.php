@@ -37,7 +37,7 @@
         }
 
         if($hasil == "Lolos"){
-            if ($this->Pendonor->updatetgldonor($kode, $tanggal, $jml_donor)) {
+            if ($this->Pendonor->updatetgldonor($kode, $tanggal, $jml_donor, $rhesus)) {
                 echo "Berhasil tahap 2";
             }
             else{

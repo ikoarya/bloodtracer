@@ -27,19 +27,6 @@ Class Darah extends CI_Model {
 					$this->db->insert('detail_permintaan', $data);
 				}	
 			}
-			/*
-			if (!empty($daftarBarang)) {
-				foreach ($daftarBarang as $item) {
-					$data = array (
-						'noform' => $nomor,
-						'jenisreq' => $item->jenis,
-						'goldarreq' => $item->goldar,
-						'jumlahreq' => $item->jumlah
-					);
-					$this->db->insert('detail_permintaan', $data);
-				}	
-			}*/
-			
 			return true;
 		}
 		else{
@@ -70,10 +57,36 @@ Class Darah extends CI_Model {
 			'waktu_kirimship' => $tanggal,
 			'kode_tujuan' => $kode,
 			'petugas_kirimship' => $petugas,
-			'suhu_kirim' => $suhu,
+			'suhu_kirim' => $suhu
 		);
 
 		if($this->db->insert('shipping', $data)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function ambilmaxaftap(){
+		$this->db->select_max('id_aftap');
+		$query = $this->db->get('aftap');
+		return $query->row()->id_aftap;
+	}
+
+	public function inputAftap($noaftap, $nomorpendaf, $nokantung, $jeniskantung, $asal, $tgl, $waktu, $petugas, $keterangan){
+		$data = array (
+			'no_aftap' => $noaftap,
+			'nomor_donor' => $nomorpendaf,
+			'id_kantung' => $nokantung,
+			'jenis_kantung' => $jeniskantung,
+			'asal_darah' => $asal,
+			'tanggal_aftap' => $tgl,
+			'waktu_aftap' => $waktu,
+			'petugas_aftap' => $petugas,
+			'keterangan' => $keterangan
+		);
+		if($this->db->insert('aftap', $data)){
 			return true;
 		}
 		else{

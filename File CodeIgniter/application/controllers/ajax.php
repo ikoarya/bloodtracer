@@ -24,6 +24,11 @@ class Ajax extends CI_Controller {
     echo json_encode($query->result());
   }
 
+  public function tambahdetail($kode){
+    $this->load->model('Kantung');
+    $query = $this->Kantung->ambilkantung($kode);
+    echo json_encode($query->result());
+  }
  
 }
 

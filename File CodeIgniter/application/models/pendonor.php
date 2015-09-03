@@ -103,10 +103,11 @@ Class Pendonor extends CI_Model {
 		return $query;
 	}
 
-	function updatetgldonor($kode, $tanggal, $jml_donor){
+	function updatetgldonor($kode, $tanggal, $jml_donor, $rhesus){
 		$item = array (
 			'jml_donor' => $jml_donor,
-			'terakhir_donor' => $tanggal
+			'terakhir_donor' => $tanggal,
+			'rhesus' => $rhesus
 		);
 		$this->db->where('nomor_donor', $kode);
 		if ($this->db->update('donor', $item))

@@ -41,7 +41,7 @@ Purchase: http://wrapbootstrap.com
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body bgcolor="#AC193D">
+<body bgcolor="#AC193D" onload="autofill()">
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loader"></div>
@@ -155,6 +155,30 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+                
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Faktur Berhasi Diterima.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Faktur Gagal Diterima.
+                    </div>
+                  <?php }
+                ?>
+
                 <div class="page-body" >
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -177,18 +201,9 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal</label>
                                                     <div class="col-lg-6">
-                                                        <input type="date" class="form-control" name="tanggal" placeholder="Tanggal"
-                                                               data-bv-message="Nomor tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Nomor harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[0-9]"
-                                                               data-bv-regexp-message="Nomor Form hanya terdiri dari angka"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="1"
-                                                               data-bv-stringlength-max="100"
-                                                               data-bv-stringlength-message="Nomor Harus Diisi"
-                                                                />
+                                                        <input type="text" class="form-control" name="tanggal" id="tanggal" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="tanggal1" id="tanggal1" />
+
                                                     </div>
                                                 </div>
 
@@ -196,54 +211,25 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Waktu Pengiriman</label>
                                                     <div class="col-lg-6">
-                                                        <input type="time" class="form-control" name="waktu" placeholder="Waktu Pengiriman"
-                                                               data-bv-message="Waktu tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Waktu harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[0-9]:"
-                                                               data-bv-regexp-message="The username can only consist of alphabetical, number, dot and underscore"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="5"
-                                                               data-bv-stringlength-max="5"
-                                                               data-bv-stringlength-message="Waktu Harus Diisi"
-                                                                />
+                                                        <input type="text" class="form-control" name="waktu" id="waktu" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="waktu1" id="waktu1" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Kode Tujuan Pengiriman</label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="kode" placeholder="Kode Tujuan"
-                                                               data-bv-message="kode tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Kode harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[0-9]"
-                                                               data-bv-regexp-message="The username can only consist of alphabetical, number, dot and underscore"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="1"
-                                                               data-bv-stringlength-max="10"
-                                                               data-bv-stringlength-message="Kode Harus Diisi"
-                                                                />
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="kodetujuan" id="kodetujuan" value="103" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="kodetujuan1" id="kodetujuan1" value="103" />
+                                                            
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tujuan Pengiriman</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tujuan" placeholder="Tujuan Pengiriman"
-                                                               data-bv-message="Tujuan Tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Tujuan harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[a-zA-Z0-9_\/.]+"
-                                                               data-bv-regexp-message="The username can only consist of alphabetical, number, dot and underscore"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="1"
-                                                               data-bv-stringlength-max="100"
-                                                               data-bv-stringlength-message="Tujuan Harus Diisi"
-                                                                />
+                                                        <input type="text" class="form-control" name="tujuan" id="tujuan" value="RSU Sidoarjo" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="tujuan1" id="tujuan1" value="RSU Sidoarjo"/>
                                                     </div>
                                                 </div>
 
@@ -251,18 +237,8 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Serial Shipping</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="serial" placeholder="Serial Shipping"
-                                                               data-bv-message="Serial tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Serial harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[0-9]"
-                                                               data-bv-regexp-message="The username can only consist of alphabetical, number, dot and underscore"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="1"
-                                                               data-bv-stringlength-max="20"
-                                                               data-bv-stringlength-message="Serial Harus Diisi"
-                                                                />
+                                                        <input type="text" class="form-control" name="serial" id="serial" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="serial1" id="serial1" />
                                                     </div>
                                                 </div>
 
@@ -308,10 +284,10 @@ Purchase: http://wrapbootstrap.com
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Kode SSCC</label>
+                                                    <label class="col-lg-3 control-label">Kode Produksi</label>
                                                     <div class="col-lg-6">
                                                         <div class="input-group">
-                                                                <input type="text" class="form-control" placeholder="Masukkan SSCC" id="kodesscc" name="kodesscc">
+                                                                <input type="text" class="form-control" placeholder="Masukkan Kode Produksi" id="kodeprod" name="kodeprod">
                                                                 <span class="input-group-btn">
                                                                     <button class="btn btn-default shiny" type="button" onclick="cekkode()">Cek</button>
                                                                 </span>
@@ -346,6 +322,7 @@ Purchase: http://wrapbootstrap.com
                                                                 
                                                             </tbody>
                                                         </table>
+                                                        <input id="daftarBarang" type="hidden" name="daftarBarang" />
                                                     </div>
                                                 </div>
                                                 <br>
@@ -355,7 +332,7 @@ Purchase: http://wrapbootstrap.com
                                                  <div class="form-group">
                                                     <div class="col-lg-offset-5 col-lg-6">
                                                         <input class="btn btn-darkorange" type="reset" value="Cetak Form" onclick="javascript:alert('Maaf Fitur ini belum tersedia')" />
-                                                        <input class="btn btn-palegreen" type="submit" value="Simpan" />
+                                                        <input class="btn btn-palegreen" type="submit" value="Simpan" onclick="submitdetail()" />
                                                     </div>
 
                                                 </div>
@@ -380,67 +357,122 @@ Purchase: http://wrapbootstrap.com
     </div>
 
     <script type="text/javascript">
-      function cekkode(){
-        var nilai = document.getElementById('kodesscc').value;
-        
-        document.getElementById('detail').innerHTML = '';
-        <?php foreach ($list->result() as $row) { 
-            $prod = $row->id_produksi;
-            $kantung = $row->id_kantung;
-            $komponen = $row->jenis_komponen;
-            $waktuprod = $row->waktu_produksi;
-            $waktukadal = $row->waktu_kadaluarsa;
-            $sscc = $row->sscc;
-         ?>
+        function getTanggal(){
+            var d = new Date();
+            var tanggal = d.getDate();
+            var bulan = parseInt(d.getMonth()+1);
 
-        var mylist = document.getElementById("detail");
-        var row = document.createElement("tr");
 
-        var prod = "<?php echo $prod;?>";
-        var kantung = "<?php echo $kantung;?>";
-        var komponen = "<?php echo $komponen;?>";
-        var waktuprod = "<?php echo $waktuprod;?>";
-        var waktukadal = "<?php echo $waktukadal;?>";
+            if (d.getDate() < 10) {
+                var tanggal = '0'+d.getDate();
+            }
 
-        var sscc = "<?php echo $sscc;?>";
-
-        //alert(sscc);
-        var cell = document.createElement("td");
-        var cellText = document.createTextNode(prod);
-        cell.appendChild(cellText);
-
-        var cell2 = document.createElement("td");
-        var cellText2 = document.createTextNode(kantung);
-        cell2.appendChild(cellText2);
-
-        var cell3 = document.createElement("td");
-        var cellText3 = document.createTextNode(komponen);
-        cell3.appendChild(cellText3);
-
-        var cell4 = document.createElement("td");
-        var cellText4 = document.createTextNode(waktuprod);
-        cell4.appendChild(cellText4);
-
-        var cell5 = document.createElement("td");
-        var cellText5 = document.createTextNode(waktukadal);
-        cell5.appendChild(cellText5);
-
-        if (nilai == sscc) {
-            
-            row.appendChild(cell);
-            row.appendChild(cell2);
-            row.appendChild(cell3);
-            row.appendChild(cell4);
-            row.appendChild(cell5);
-            mylist.appendChild(row);
-           
+            if (bulan < 10) {
+                var bulan = '0' + bulan;
+            }
+            var waktudaftar = parseInt(d.getFullYear())+'-'+bulan +'-'+ tanggal;
+            return waktudaftar;
         }
-        //else{
-          //document.getElementById('detail').innerHTML = '<tr><td colspan="5" align="center">Maaf Data Tidak Ditemukan</td><tr>';
-        //}
-      
-      <?php } ?>
-    }
+
+        function getWaktu(){
+            var d = new Date();
+            var jam = d.getHours();
+            var menit = d.getMinutes();
+
+            if (d.getHours() < 10) {
+                jam = '0'+d.getHours();
+            }
+            if (d.getMinutes() < 10) {
+                menit = '0'+d.getMinutes();
+            };
+            var waktu = jam+':'+ menit;
+            return waktu;
+        }
+
+        function autofill(){
+            var tanggal = getTanggal();
+            var waktu = getWaktu();
+
+            document.getElementById('tanggal').value = tanggal;
+            document.getElementById('waktu').value = waktu;
+
+            document.getElementById('tanggal1').value = tanggal;
+            document.getElementById('waktu1').value = waktu;
+
+            document.getElementById('serial').value = '103201000' + <?php echo $id; ?>;
+            document.getElementById('serial1').value = '103201000' + <?php echo $id; ?>;
+        }
+
+        function cekkode() {
+          var nilai = document.getElementById('kodeprod').value;
+
+            $.getJSON('<?php echo base_url(); ?>ajax/ambilproduksi/' + nilai,
+              function (data) {
+                    console.log(data);
+
+                    var idprod = data[0]["id_produksi"];
+                    var nokantung = data[0]["id_kantung"];
+                    var jenis = data[0]["jenis_komponen"];
+                    var waktuprod = data[0]["waktu_produksi"];
+                    var expired = data[0]["waktu_kadaluarsa"];
+
+                    var rows = $('tr');
+                    var mylist = document.getElementById("detail");
+                    var row = document.createElement("tr");
+
+                    var cell = document.createElement("td");
+                    var cellText = document.createTextNode(idprod);
+                    cell.appendChild(cellText);
+
+                    var cell2 = document.createElement("td");
+                    var cellText2 = document.createTextNode(nokantung);
+                    cell2.appendChild(cellText2);
+
+                    var cell3 = document.createElement("td");
+                    var cellText3 = document.createTextNode(jenis);
+                    cell3.appendChild(cellText3);
+
+                    var cell4 = document.createElement("td");
+                    var cellText4 = document.createTextNode(waktuprod);
+                    cell4.appendChild(cellText4);
+
+                    var cell5 = document.createElement("td");
+                    var cellText5 = document.createTextNode(expired);
+                    cell5.appendChild(cellText5);
+
+                    row.appendChild(cell);
+                    row.appendChild(cell2);
+                    row.appendChild(cell3);
+                    row.appendChild(cell4);
+                    row.appendChild(cell5);
+                    mylist.appendChild(row);
+              }
+            ).fail(function() {console.log('error fak')});
+        }
+
+        function submitdetail(){
+          var rows = $('tr');
+          var daftarBarang = [];
+
+          for (var i=1; i<rows.length; i++) {
+            var barang = {};
+            var children = $(rows[i]).children();
+            barang.idprod = children[0].innerHTML;
+            barang.nokantung = children[1].innerHTML;
+            barang.jenis = children[2].innerHTML;
+            barang.waktuprod = children[3].innerHTML;
+            barang.expired = children[4].innerHTML;
+           
+            daftarBarang.push(barang);
+            
+          }
+          alert(JSON.stringify(daftarBarang));
+
+          $('#daftarBarang').val(JSON.stringify(daftarBarang));
+
+          $('#form').submit();
+
+        }
     
 
     </script>

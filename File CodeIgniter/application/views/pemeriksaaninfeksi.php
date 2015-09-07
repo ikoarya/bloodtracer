@@ -156,6 +156,30 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Pengujian Sampel Darah Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Pengujian Sampel Darah Gagal.
+                    </div>
+                  <?php }
+                ?>
+
                 <div class="page-body" >
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12">

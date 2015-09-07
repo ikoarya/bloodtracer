@@ -41,7 +41,7 @@ Purchase: http://wrapbootstrap.com
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body bgcolor="#AC193D">
+<body bgcolor="#AC193D" onload="kodependonor()">
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loader"></div>
@@ -162,14 +162,24 @@ Purchase: http://wrapbootstrap.com
                 
 
                 <?php
-                  if($hasil) { ?>
+                  if($hasil == 'sukses') { ?>
                     <br>
                     <div class="alert alert-success fade in" align="center">
                       <button class="close" data-dismiss="alert">
                           ×
                       </button>
                       <i class="fa-fw fa fa-check"></i>
-                      <strong>Sukses</strong> Penambahan Data Pendonor Berhasil.
+                      <strong>Sukses</strong> Pendaftaran Pendonor Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Pendaftaran Pendonor Gagal.
                     </div>
                   <?php }
                 ?>
@@ -195,8 +205,9 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Kode Pendonor</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" placeholder="Kode Pendonor" value="<?php echo $id; ?>" disabled/>
-                                                        <input type="hidden" name="kodependonor" id="kodependonor" value="<?php echo $id; ?>">
+                                                        <input type="text" class="form-control" placeholder="Kode Pendonor" id="kodependonor" disabled/>
+                                                        <input type="hidden" name="kodependonor" id="kodependonor1" >
+                                                        <input type="hidden" name="idpendonor" id="idpendonor" value="<?php echo $id;?>">
                                                     </div>
                                                 </div>
 
@@ -488,6 +499,15 @@ Purchase: http://wrapbootstrap.com
           var tgl = nilai[8]+nilai[9]+nilai[5]+nilai[6]+nilai[0]+nilai[1]+nilai[2]+nilai[3];
           document.getElementById('kodependonor').setAttribute("value",kode);
           alert(kode);
+      }
+      function kodependonor(){
+        var iden;
+        var d  = new Date();
+        var tahun = d.getFullYear();
+        tahun = tahun % 100;
+        var nilai = '103' + tahun + '<?php echo $id; ?>';
+        document.getElementById('kodependonor').value = nilai;
+        document.getElementById('kodependonor1').value = nilai;
       }
     </script>
 

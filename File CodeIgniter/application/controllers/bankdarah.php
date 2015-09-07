@@ -22,17 +22,24 @@
         $this->load->view('penelusurankantung');
     }
 
-    public function karantina(){
-        $this->load->view('formkarantina');
+    public function karantina($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+
+        $data['hasil'] = $hasil;
+        $this->load->view('formkarantina', $data);
     }
 
     public function cekpersediaan(){
         $this->load->view('cekpersediaan');
     }
 
-    public function pengirimandarah(){
-        $this->load->model('darah');
-        $data['list'] = $this->darah->ceksscc();
+    public function pengirimandarah($hasil = null){
+        $this->load->model('Darah');
+        $data['id'] = $this->Darah->ambilmaxkirim()+1;
+        $data['hasil'] = $hasil;
+
         $this->load->view('pengirimandarah', $data);
 
     }
@@ -53,5 +60,21 @@
         
         
         $this->load->view('lihatpermintaan', $data);
+    }
+
+
+    public function submitkarantina(){
+        $jenis = $this->input->post('jenis');
+        $golongan = $this->input->post('goldar');
+
+        $this->load->model('Darah');
+        if($this->Darah->tambahpersediaan($jenis, $golongan)){
+            $hasil = 'sukses';
+            redirect('bankdarah/karantina/'. $hasil);
+        }
+        else{
+            $hasil = 'gagal';
+            redirect('bankdarah/karantina/'. $hasil);
+        }
     }
  }

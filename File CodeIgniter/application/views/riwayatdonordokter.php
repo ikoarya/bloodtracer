@@ -11,7 +11,7 @@ Purchase: http://wrapbootstrap.com
 <!-- Mirrored from beyondadmin-v1.4.1.s3-website-us-east-1.amazonaws.com/form-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Aug 2015 01:26:52 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>Karantina Darah</title>
+    <title>Riwayat Donor</title>
 
     <meta name="description" content="form validation" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,6 +38,7 @@ Purchase: http://wrapbootstrap.com
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
     <script src="<?php echo base_url(); ?>assets/js/skins.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 </head>
 <!-- /Head -->
 <!-- Body -->
@@ -75,12 +76,12 @@ Purchase: http://wrapbootstrap.com
                                         <img src="<?php echo base_url(); ?>assets/img/avatars/adam-jansen.jpg">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>Bank Darah UTD</span></span></h2>
+                                        <h2><span class="profile"><span>Dokter Pemeriksa</span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>Bank Darah UTD</a></li>
+                                    <li class="username"><a>Dokter Pemeriksa</a></li>
                                     
                                     
                                     <!--/Theme Selector Area-->
@@ -110,8 +111,9 @@ Purchase: http://wrapbootstrap.com
     <div class="main-container container-fluid">
         <!-- Page Container -->
         <div class="page-container">
-            <?php      
-              $this->load->view('navbarmenu');
+            <!-- Page Sidebar -->
+           <?php      
+              $this->load->view('navbardokter');
             ?>
             <!-- /Page Sidebar -->
             
@@ -125,7 +127,7 @@ Purchase: http://wrapbootstrap.com
                             <a href="#">Home</a>
                         </li>
                         <li>
-                            <a href="#">Karantina Darah</a>
+                            <a href="#">Riwayat Donor</a>
                         </li>
                        
                     </ul>
@@ -135,7 +137,8 @@ Purchase: http://wrapbootstrap.com
                 <div class="page-header position-relative">
                     <div class="header-title">
                         <h1>
-                            Karantina Darah
+                            Riwayat Donor
+                            
                         </h1>
                     </div>
                     <!--Header Buttons-->
@@ -143,7 +146,7 @@ Purchase: http://wrapbootstrap.com
                         <a class="sidebar-toggler" href="#">
                             <i class="fa fa-arrows-h"></i>
                         </a>
-                        <a class="refresh" id="refresh-toggler" href="formaftap.html">
+                        <a class="refresh" id="refresh-toggler" href="riwayatdonor.html">
                             <i class="glyphicon glyphicon-refresh"></i>
                         </a>
                         <a class="fullscreen" id="fullscreen-toggler" href="#">
@@ -163,17 +166,17 @@ Purchase: http://wrapbootstrap.com
                           ×
                       </button>
                       <i class="fa-fw fa fa-check"></i>
-                      <strong>Sukses</strong> Kantung Darah Berhasil Dimasukkan ke Inventory.
+                      <strong>Sukses</strong> Pendaftaran Pendonor Berhasil.
                     </div>
                   <?php } 
                   elseif ($hasil == 'gagal') { ?>
                     <br>
-                    <div class="alert alert-danger fade in radius-bordered alert-shadowed" align="center">
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
                         <button class="close" data-dismiss="alert">
                             ×
                         </button>
                         <i class="fa-fw fa fa-times"></i>
-                        <strong>Gagal!</strong> Kantung Darah Gagal Dimasukkan ke Inventory.
+                        <strong>Gagal!</strong> Pendaftaran Pendonor Gagal.
                     </div>
                   <?php }
                 ?>
@@ -189,67 +192,114 @@ Purchase: http://wrapbootstrap.com
                                             <span class="widget-caption">Registration Form</span>
                                         </div>
                                         <div class="widget-body">
-                                            <form id="registrationForm" method="post" class="form-horizontal" action="<?php echo base_url(); ?>bankdarah/submitkarantina"
+                                            <form id="registrationForm" method="post" class="form-horizontal"
                                                   data-bv-message="This value is not valid"
                                                   data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                                                   data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
                                                   data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                                 <div class="form-title" align="center">
-                                                    Silahkan isi Barcode Produksi di bawah ini
+                                                    Silahkan isi Kode Pendonor
                                                 </div>
                                                 
-
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Barcode Produksi</label>
+                                                    <label class="col-lg-3 control-label">Kode Pendonor</label>
                                                     <div class="col-lg-6">
                                                         <div class="input-group">
-                                                                <input type="text" class="form-control" name="barcode" id="barcode">
+                                                                <input type="text" class="form-control" id="kode" name="kode">
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn btn-default shiny" type="button" onclick="cekkode()">Cek</button>
+                                                                    <button class="btn btn-default shiny" type="button" onclick="cekkode()">Cek Kode</button>
                                                                 </span>
                                                             </div>
                                                     </div>
+
+                                                    <!--<div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="firstName" placeholder="First name"
+                                                               data-bv-notempty="true"
+                                                               data-bv-notempty-message="The first name is required and cannot be empty" />
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="lastName" placeholder="Last name"
+                                                               data-bv-notempty="true"
+                                                               data-bv-notempty-message="The last name is required and cannot be empty" />
+                                                    </div>
+                                                    <input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy">-->
                                                 </div>
 
-                                               
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Nama Pendonor</label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" name="nama" id="nama" value="" disabled="true" />
+                                                    </div>
+                                                </div>
+
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">HIV</label>
+                                                    <label class="col-lg-3 control-label">Jenis Kelamin</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hiv" id="hiv" disabled="true" />
+                                                        <input type="text" class="form-control" name="jenkel" id="jenkel" value="" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Hepatitis</label>
+                                                    <label class="col-lg-3 control-label">Tanggal Lahir</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hepatitis" id="hepatitis" disabled="true" />
+                                                        <input type="text" class="form-control" name="tgl" id="tgl" value="" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">HCV</label>
+                                                    <label class="col-lg-3 control-label">Agama</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hcv" id="hcv" disabled="true" />
+                                                        <input type="text" class="form-control" name="agama" id="agama" value="" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Sifilis</label>
+                                                    <label class="col-lg-3 control-label">Golongan Darah</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="sifilis" id="sifilis" disabled="true" />
-                                                        <input type="hidden" class="form-control" name="jenis" id="jenis" />
-                                                        <input type="hidden" class="form-control" name="goldar" id="goldar" />
+                                                        <input type="text" class="form-control" name="goldar" id="goldar" value="" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 
-                                                 <div class="form-group">
-                                                    <div class="col-lg-offset-5 col-lg-6">
-                                                        <input class="btn btn-darkorange" type="reset" value="Kantung Darah Terinfeksi" />
-                                                        <input class="btn btn-palegreen" type="submit" value="Simpan Dalam Inventori" />
-                                                    </div>
 
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Rhesus</label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" name="rhesus" id="rhesus" value="" disabled="true" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label"></label>
+                                                    <div class="col-lg-7">
+                                                        <table class="table table-hover">
+                                                            <thead class="bordered-darkorange">
+                                                                <tr>
+                                                                    <th>
+                                                                        Nomor Identitas
+                                                                    </th>
+                                                                    <th>
+                                                                        Kode Pendonor
+                                                                    </th>
+                                                                    <th>
+                                                                        Waktu Donor
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="identitas">
+                                                                
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-lg-offset-5 col-lg-6">
+                                                        <input class="btn btn-darkorange" type="reset" value="Clear" />
+                                                        <input class="btn btn-palegreen" type="submit" value="Lanjut" />
+                                                    </div>
                                                 </div>
                                                 
                                             </form>
@@ -270,48 +320,28 @@ Purchase: http://wrapbootstrap.com
         <!-- Main Container -->
 
     </div>
+
     <script type="text/javascript">
         function cekkode(){
-            var nilai = document.getElementById('barcode').value;
-            var satu, dua;
+            var nilai = document.getElementById('kode').value;
 
-            $.getJSON('<?php echo base_url(); ?>ajax/ambilproduksi/' + nilai,
-              function (data) {             
-                var jenis = data[0]["jenis_komponen"];
-                var nokantung = data[0]["id_kantung"];
+            $.getJSON('<?php echo base_url(); ?>ajax/ambilriwayat/' + nilai,
+              function (data) {
                 
-                $('#jenis').val(jenis);
-                satu = jenis;
+                var identitas = data[0]["noid"];
+                var tanggalterakhir = data[0]["terakhir_donor"]
+               // console.log(data[0]);
+                $('#nama').val(data[0]["nama"]);
+                $('#jenkel').val(data[0]["jenis_kelamin"]);
+                $('#tgl').val(data[0]["tanggal_lahir"]);
+                $('#agama').val(data[0]["agama"]);
+                $('#goldar').val(data[0]["golongan_darah"]);
+                $('#rhesus').val(data[0]["rhesus"]);    
 
-                $.getJSON('<?php echo base_url(); ?>ajax/tambahdetail/' + nokantung,
-                  function (data) {             
-                    var hiv = data[0]["hiv"];
-                    var sifilis = data[0]["sifilis"];
-                    var hepatitis = data[0]["hepatitis"];
-                    var hcv = data[0]["hcv"];
-                    var kodedonor = data[0]["nomor_donor"];
-                    
-                    $('#hiv').val(hiv);
-                    $('#sifilis').val(sifilis);
-                    $('#hepatitis').val(hepatitis);
-                    $('#hcv').val(hcv);
-
-                    $.getJSON('<?php echo base_url(); ?>ajax/ambilriwayat/' + kodedonor,
-                      function (data) {             
-                        var goldar = data[0]["golongan_darah"];
-                        
-                        $('#goldar').val(goldar);
-
-                        
-                      }
-                    ).fail(function() {console.log('error fak')});
-                    
-                  }
-                ).fail(function() {console.log('error fak')});
+                document.getElementById('identitas').innerHTML = '<tr><td>'+ identitas +' </td><td>'+ nilai +' </td><td>'+ tanggalterakhir +' </td></tr>';
 
               }
             ).fail(function() {console.log('error fak')});
-        
         }
     </script>
     <!--Basic Scripts-->

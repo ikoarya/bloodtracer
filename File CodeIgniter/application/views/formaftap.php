@@ -156,6 +156,30 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Pengisian Data AFTAP Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Pengisian Data AFTAP Gagal.
+                    </div>
+                  <?php }
+                ?>
+
                 <div class="page-body" >
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -359,7 +383,20 @@ Purchase: http://wrapbootstrap.com
     <script type="text/javascript">
         function generateAftap(){
             var d = new Date();
-            var nomor = '1'+d.getDate()+ parseInt(d.getMonth()+1)+d.getFullYear()+ '000' + <?php echo $id;?>;
+            var tahun = d.getFullYear();
+            tahun = tahun % 100;
+            var tanggal = d.getDate();
+            var bulan = parseInt(d.getMonth()+1);
+
+            if (d.getDate() < 10) {
+                tanggal = '0'+tanggal;
+            }
+
+            if (bulan < 10) {
+                bulan = '0' + bulan;
+            }
+
+            var nomor = '1'+tanggal + bulan + tahun+ '000' + <?php echo $id;?>;
             $('#noaftap').val(nomor);
             $('#noaftap1').val(nomor);
 //            document.getElementsByTagName('nopendaftaran').value = nomor;

@@ -156,6 +156,30 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Pembuatan Faktur Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Pembuatan Faktur Gagal.
+                    </div>
+                  <?php }
+                ?>
+
                 <div class="page-body" >
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -338,7 +362,21 @@ Purchase: http://wrapbootstrap.com
             var waktu = getWaktu();
             var d = new Date();
 
-            var nomor = '2'+d.getDate()+ parseInt(d.getMonth()+1)+d.getFullYear()+ '000' + <?php echo $id;?>;
+            var tahunkode = d.getFullYear();
+            tahunkode = tahunkode % 100;
+            var tanggalkode = d.getDate();
+            var bulankode = parseInt(d.getMonth()+1);
+
+            if (d.getDate() < 10) {
+                tanggalkode = '0'+tanggalkode;
+            }
+
+            if (bulankode < 10) {
+                bulankode = '0' + bulankode;
+            }
+
+
+            var nomor = '2'+tanggalkode + bulankode + tahunkode + '000' + <?php echo $id;?>;
             //alert(nomor);
             $('#nofaktur').val(nomor);
             $('#nofaktur1').val(nomor);

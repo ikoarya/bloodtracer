@@ -38,7 +38,7 @@
                 echo $obj->goldar;
                 echo $obj->jumlah;
                 array_push($itemlist, $obj);
-
+                //"You have been hacked";
             }  
         }
         

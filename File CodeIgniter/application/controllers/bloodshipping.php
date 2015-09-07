@@ -20,20 +20,44 @@
     
     public function pengiriman(){
         //$sscc = $this->input->post('kodesscc');
-        $tanggal = $this->input->post('tanggal');
-        $waktu = $this->input->post('waktu');
-        $kode = $this->input->post('kode');
-        $tujuan = $this->input->post('tujuan');
-        $serial = $this->input->post('serial');
+        $tanggal = $this->input->post('tanggal1');
+        $waktu = $this->input->post('waktu1');
+        $kode = $this->input->post('kodetujuan1');
+        $tujuan = $this->input->post('tujuan1');
+        $serial = $this->input->post('serial1');
         $suhu = $this->input->post('suhu');
         $petugas = $this->input->post('petugas');
+        $itemlist = [];
+        $daftarBarang = json_decode($this->input->post('daftarBarang'));
+
+
+        if (!empty($daftarBarang)) {
+            foreach ($daftarBarang as $barang) {
+                $obj = new stdClass();
+                $obj->idprod = $barang->idprod;
+                $obj->nokantung = $barang->nokantung;
+                $obj->jenis = $barang->jenis;
+                $obj->waktuprod = $barang->waktuprod;
+                $obj->expired = $barang->expired;
+               
+                echo $obj->jenis;
+                echo $obj->goldar;
+                echo $obj->jumlah;
+                array_push($itemlist, $obj);
+
+            }  
+        }
+
+        
 
         $this->load->model('Darah');
-        if($this->Darah->pengiriman($tanggal, $waktu, $kode, $tujuan, $serial, $suhu, $petugas)){
-            echo "berhasil";
+        if($this->Darah->pengiriman($tanggal, $waktu, $kode, $tujuan, $serial, $suhu, $petugas, $itemlist)){
+            $hasil = 'sukses';
+            redirect('bankdarah/pengirimandarah/'. $hasil);
         }
         else{
-            echo "gagal";
+            $hasil = 'gagal';
+            redirect('bankdarah/pengirimandarah/'. $hasil);
         }
 
 

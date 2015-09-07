@@ -177,47 +177,22 @@ Purchase: http://wrapbootstrap.com
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jenis Darah</label>
-                                                    <div class="col-lg-6">
-                                                        
-                                                        <div class="btn-group">
-                                                            <a class="btn btn-default " href="javascript:void(0);">Pilih Jenis Darah</a>
-                                                            <a class="btn btn-default  dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><i class="fa fa-angle-down"></i></a>
-                                                            <ul class="dropdown-menu">
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Whole Blood</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Packed Red Cells</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Plasma</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Fresh Plasma</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Trombocyte Concentrate</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Washed Red Cell</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:void(0);">Anti Haemophlic Factor Concentrat</a>
-                                                                </li>
-                                                                
-                                                            </ul>
-                                                        </div>
-
+                                                    <div class="col-lg-2">
+                                                        <select id="jenisdarah" name="jenisdarah" onchange="ambilvalue()">
+                                                          <option value="Whole Blood">Whole Blood</option>
+                                                          <option value="Packed Red Cells">Packed Red Cells</option>
+                                                          <option value="Plasma">Plasma</option>
+                                                          <option value="Fresh Plasma">Fresh Plasma</option>
+                                                          <option value="Trombocyte Concentrate">Trombocyte Concentrate</option>
+                                                          <option value="Washed Red Cell">Washed Red Cell</option>
+                                                          <option value="Anti Haemophlic Factor Concentrate">Anti Haemopholic</option>
+                                                        </select>
+                                                            
                                                     </div>
                                                 </div>
 
-                                                 <div class="form-group">
-                                                    <div class="col-lg-offset-5 col-lg-6">
-                                                        <input class="btn btn-darkorange" type="reset" value="Reset" />
-                                                        <input class="btn btn-palegreen" type="submit" value="Cek Persediaan" />
-                                                    </div>
-
-                                                </div>
+                                                 <br>
+                                                 <br>
                                                
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label"></label>
@@ -236,20 +211,8 @@ Purchase: http://wrapbootstrap.com
                                                                     </th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    
-                                                                    <td>
-                                                                        Plasma
-                                                                    </td>
-                                                                    <td>
-                                                                        SG
-                                                                    </td>
-                                                                    <td>
-                                                                        100
-                                                                    </td>
-                                                                </tr>
-                                                                
+                                                            <tbody id="daftardetail">
+                                                                                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -273,7 +236,48 @@ Purchase: http://wrapbootstrap.com
         <!-- Main Container -->
 
     </div>
+    <script type="text/javascript">
+        function ambilvalue(){
+            var nilai = document.getElementById('jenisdarah').value;
+            
+            $.ajax({
+                url: '<?php echo base_url(); ?>ajax/ambilpersediaan/',
+                data: {jenis: nilai},
+                dataType: 'json',
+                type: 'POST',
+                success: function(data) {
+                    //console.log(data[0].jenis);
+                        document.getElementById('daftardetail').innerHTML = '';
+                        data.forEach(
+                           function (element, index, array) {
+                            var rows = $('tr');
+                            var mylist = document.getElementById("daftardetail");
+                            var row = document.createElement("tr");
 
+                            var cell = document.createElement("td");
+                            var cellText = document.createTextNode(element.jenis);
+                            cell.appendChild(cellText);
+
+                            var cell2 = document.createElement("td");
+                            var cellText2 = document.createTextNode(element.golongan_darah);
+                            cell2.appendChild(cellText2);
+
+                            var cell3 = document.createElement("td");
+                            var cellText3 = document.createTextNode(element.jumlah);
+                            cell3.appendChild(cellText3);
+
+                            
+                            row.appendChild(cell);
+                            row.appendChild(cell2);
+                            row.appendChild(cell3);
+                            mylist.appendChild(row);
+                           }
+                         );
+                },
+            })
+            
+        }
+    </script>
     <!--Basic Scripts-->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>

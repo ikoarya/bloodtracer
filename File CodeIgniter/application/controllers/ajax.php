@@ -29,6 +29,31 @@ class Ajax extends CI_Controller {
     $query = $this->Kantung->ambilkantung($kode);
     echo json_encode($query->result());
   }
+
+  public function ambildetailfaktur($kode){
+    $this->load->model('Faktur');
+    $query = $this->Faktur->ambildetail($kode);
+    echo json_encode($query->result());
+  }
+
+  public function ambilproduksi($kode){
+    $this->load->model('Darah');
+    $query = $this->Darah->ambilproduksi($kode);
+    echo json_encode($query->result());
+  }
+
+  public function ambilaftap($kode){
+    $this->load->model('Darah');
+    $query = $this->Darah->ambilaftap($kode);
+    echo json_encode($query->result());
+  }
+
+  public function ambilpersediaan($kode=NULL){
+    $nilai = $this->input->post('jenis');
+    $this->load->model('Kantung');
+    $query = $this->Kantung->ambilstok($nilai);
+    echo json_encode($query->result_array());
+  }
  
 }
 

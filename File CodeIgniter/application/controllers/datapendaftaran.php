@@ -29,21 +29,17 @@
         $this->load->model('Pendonor');
 
         if ($this->Pendaftaran->daftardonor($nopendaf, $kode, $rhesus, $hb, $goldar, $bb, $tensi, $cc, $petugas, $hasil)) {
-            echo "Berhasil tahap 1";
+            if ($this->Pendonor->updatetgldonor($kode, $tanggal, $jml_donor, $rhesus)) {
+                $hasil = 'sukses';
+                redirect('dokter/periksadonor/'. $hasil);
+            }
             
         }
         else{
-            echo "gagal cak";
+            $hasil = 'gagal';
+            redirect('dokter/periksadonor/'. $hasil);
         }
 
-        if($hasil == "Lolos"){
-            if ($this->Pendonor->updatetgldonor($kode, $tanggal, $jml_donor, $rhesus)) {
-                echo "Berhasil tahap 2";
-            }
-            else{
-                echo "Gagal tahap 2";
-            }
-        }
     }
 
     

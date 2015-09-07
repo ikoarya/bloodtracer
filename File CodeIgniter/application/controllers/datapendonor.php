@@ -6,9 +6,13 @@
  class Datapendonor extends CI_Controller{
     function __construct(){
         parent::__construct();
+
     }
+
+
     
     public function tambahbaru(){
+        $id = $this->input->post('idpendonor');
         $kode = $this->input->post('kodependonor');
         $namapendonor = $this->input->post('namapendonor');
         $tanggallahir = $this->input->post('tanggallahir');
@@ -24,15 +28,15 @@
         $jenisidentitas = $this->input->post('jenisidentitas');
 
         $this->load->model('Pendonor');
-        if($this->Pendonor->tambahpendonor($kode, $namapendonor, $tanggallahir, $tempatlahir, $jeniskelamin, $agama, $pekerjaan, $golongandarah, $alamat, $kodepos, $wilayah, $noid, $jenisidentitas)){
+        if($this->Pendonor->tambahpendonor($id, $kode, $namapendonor, $tanggallahir, $tempatlahir, $jeniskelamin, $agama, $pekerjaan, $golongandarah, $alamat, $kodepos, $wilayah, $noid, $jenisidentitas)){
 
-            $data['id'] = $this->Pendonor->ambilmaxid()+1;
-            $data['hasil'] = "1";
-            $this->load->view('daftarbaru', $data);
+            $hasil = 'sukses';
+            redirect('administrasi/daftarbaru/'. $hasil);
         }
 
         else{
-            echo "Gagal";
+            $hasil = 'gagal';
+            redirect('administrasi/daftarbaru/'. $hasil);
         }
 
 
@@ -47,11 +51,13 @@
 
         $this->load->model('Pendonor');
         if ($this->Pendonor->daftardonor($nopendaf, $kode, $tanggal, $waktu)) {
-            echo "berhasil";
-        }
-        else{
-            echo "gagal cak";
-        }
+                $hasil = 'sukses';
+                redirect('administrasi/daftarlama/'. $hasil);
+            }
+            else{
+                $hasil = 'gagal';
+                redirect('administrasi/daftarlama/'. $hasil);
+            }
     }
 
     

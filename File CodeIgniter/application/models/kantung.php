@@ -50,5 +50,16 @@ Class Kantung extends CI_Model {
 		else
 			return false;
 	}
+
+	function ambilstok($param, $num=0, $rand=false) {
+		$this->db->where( "jenis = '$param'" );
+		if ($rand)
+			$this->db->order_by( 'rand()' );
+		if ($num != 0)
+			$query = $this->db->get('persediaan_darah', $num);
+		else
+			$query = $this->db->get('persediaan_darah');
+		return $query;
+	}
 	
 }

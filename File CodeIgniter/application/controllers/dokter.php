@@ -15,16 +15,25 @@
         else {
             $this->load->view('home_utd');
         }
-        //$this->load->view('home_utd');
     }
     
-    public function periksadonor(){
-        $this->load->view('pemeriksaandonor');
+    public function periksadonor($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }      
+
+        $data['hasil'] = $hasil;
+        $this->load->view('pemeriksaandonor', $data);
     }
 
 
-    public function riwayat(){
-        $this->load->view('riwayatdonor');
+    public function riwayat($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+
+        $data['hasil'] = $hasil;
+        $this->load->view('riwayatdonordokter', $data);
     }
 
     

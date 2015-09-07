@@ -17,12 +17,14 @@
         }
     }
     
-    public function pemeriksaanimltd(){
-        $this->load->view('pemeriksaaninfeksi');
+    public function pemeriksaanimltd($hasil = null){
+        $data['hasil'] = $hasil;
+        $this->load->view('pemeriksaaninfeksi', $data);
     }
 
-    public function terimafaktur(){
-        $this->load->view('penerimaanfaktur');
+    public function terimafaktur($hasil = null){
+        $data['hasil'] = $hasil;
+        $this->load->view('terimafakturimltd', $data);
     }
 
     public function submitinfeksi(){
@@ -37,10 +39,32 @@
 
         $this->load->model('Kantung');
         if($this->Kantung->updateinfeksi($kode, $petugas, $tanggal, $waktu, $hiv, $sifilis, $hepatitis, $hcv)){
-            echo "Berhasil gan";
+            $hasil = 'sukses';
+            redirect('imltd/pemeriksaanimltd/'. $hasil);
         }
         else{
-            echo "Gagal gan";
+            $hasil = 'gagal';
+            redirect('imltd/pemeriksaanimltd/'. $hasil);
+        }
+
+    }
+
+    public function submitterimafaktur(){
+        $kode = $this->input->post('kode');
+        $petugas = $this->input->post('petugas');
+        $tanggal = $this->input->post('tanggal1');
+        $waktu = $this->input->post('waktu1');
+
+        //echo $kode." ".$petugas." ".$tanggal." ".$waktu;
+
+        $this->load->model('Faktur');
+        if($this->Faktur->updateFaktur($kode, $petugas, $tanggal, $waktu)){
+            $hasil = 'sukses';
+            redirect('imltd/terimafaktur/'. $hasil);
+        }
+        else{
+            $hasil = 'gagal';
+            redirect('imltd/terimafaktur/'. $hasil);
         }
 
     }

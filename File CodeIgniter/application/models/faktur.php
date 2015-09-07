@@ -24,6 +24,7 @@ Class Faktur extends CI_Model {
 			
 			if (!empty($itemlist)) {
 				foreach ($itemlist as $item) {
+					$nokantung = $item->nomor;
 					$data = array (
 						'nomor_faktur' => $nofaktur,
 						'id_kantung' => $item->nomor,
@@ -31,6 +32,12 @@ Class Faktur extends CI_Model {
 						'jenis' => $item->jenis
 					);
 					$this->db->insert('detail_faktur', $data);
+
+					$this->db->where('id_kantung', $nokantung);
+					$datas = array(
+						'id_faktur' => $nofaktur
+						);
+					$this->db->update('kantung', $datas);
 				}	
 			}
 			return true;
@@ -39,4 +46,29 @@ Class Faktur extends CI_Model {
 			return false;
 		}
 	}
+
+	public function ambildetail($param, $num=0, $rand=false){
+		$this->db->where( 'nomor_faktur = '.$param );
+		if ($rand)
+			$this->db->order_by( 'rand()' );
+		if ($num != 0)
+			$query = $this->db->get('detail_faktur', $num);
+		else
+			$query = $this->db->get('detail_faktur');
+		return $query;
+	}
+
+	function updateFaktur($kode, $petugas, $tanggal, $waktu){
+		$item = array (
+			'tgl_terima' => $tanggal,
+			'waktu_terima' => $waktu,
+			'petugas_terima' => $petugas
+		);
+		$this->db->where('nomor_faktur', $kode);
+		if ($this->db->update('faktur', $item))
+			return true;
+		else
+			return false;
+	}
+
 }

@@ -113,7 +113,7 @@ Purchase: http://wrapbootstrap.com
         <!-- Page Container -->
         <div class="page-container">
             <?php      
-              $this->load->view('navbarmenu');
+              $this->load->view('navbarproduksi');
             ?>
             
             <!-- Page Content -->
@@ -176,12 +176,12 @@ Purchase: http://wrapbootstrap.com
                                                 
 
                                                 <div class="form-group">
-                                                    <label class="col-lg-3 control-label">Nomor Kantung Darah</label>
+                                                    <label class="col-lg-3 control-label">Nomor Produksi</label>
                                                     <div class="col-lg-6">
                                                         <div class="input-group">
-                                                                <input type="text" class="form-control" name="nomorkantung">
+                                                                <input type="text" class="form-control" name="nomorproduksi" id="nomorproduksi">
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn btn-default shiny" type="button">Cek</button>
+                                                                    <button class="btn btn-default shiny" type="button" onclick="cekkode()">Cek</button>
                                                                 </span>
                                                             </div>
                                                     </div>
@@ -196,28 +196,28 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Kode Donor</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="kode" value="1349586048373" disabled="true" />
+                                                        <input type="text" class="form-control" name="kodedonor" id="kodedonor" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Nama Pendonor</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="nama" value="Riko" disabled="true" />
+                                                        <input type="text" class="form-control" name="nama" id="nama" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Lahir</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tgl" value="23/08/1994" disabled="true" />
+                                                        <input type="text" class="form-control" name="tgl" id="tgl" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Golongan Darah</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="goldar" value="A" disabled="true" />
+                                                        <input type="text" class="form-control" name="goldar" id="goldar" disabled="true" />
                                                     </div>
                                                 </div>
 
@@ -225,14 +225,14 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Rhesus</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="rhesus" value="Positif" disabled="true" />
+                                                        <input type="text" class="form-control" name="rhesus" id="rhesus" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jenis Kantung</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="kode" value="Single" disabled="true" />
+                                                        <input type="text" class="form-control" name="jenis" id="jenis" disabled="true" />
                                                     </div>
                                                 </div>
 
@@ -245,28 +245,28 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">HIV</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hiv" value="Negatif" disabled="true" />
+                                                        <input type="text" class="form-control" name="hiv" id="hiv" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Hepatitis</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hepatitis" value="Negatif" disabled="true" />
+                                                        <input type="text" class="form-control" name="hepatitis" id="hepatitis" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">HCV</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="hcv" value="Negatif" disabled="true" />
+                                                        <input type="text" class="form-control" name="hcv" id="hcv" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Sifilis</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="sifilis" value="Negatif" disabled="true" />
+                                                        <input type="text" class="form-control" name="sifilis" id="sifilis" disabled="true" />
                                                     </div>
                                                 </div>
 
@@ -278,28 +278,28 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Produksi</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tglprod" value="23/08/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="tglprod" id="tglprod" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal AFTAP</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tglaftap" value="23/08/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="tglaftap" id="tglaftap" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Kadaluarsa</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="expired" value="25/09/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="expired" id="expired" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jenis Komponen</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="komponen" value="P" disabled="true" />
+                                                        <input type="text" class="form-control" name="komponen" id="komponen" disabled="true" />
                                                     </div>
                                                 </div>
 
@@ -311,49 +311,49 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tujuan</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tujuan" value="RS Dr Soetomo" disabled="true" />
+                                                        <input type="text" class="form-control" name="tujuan" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Pengiriman</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tglkirim" value="23/08/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="tglkirim" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jam Pengiriman</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="jam" value="23:59" disabled="true" />
+                                                        <input type="text" class="form-control" name="jam" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Suhu Kirim</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="suhu" value="2" disabled="true" />
+                                                        <input type="text" class="form-control" name="suhu" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Penerimaan</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tglterima" value="31/08/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="tglterima" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jam Penerimaan</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="jamterima" value="08:59" disabled="true" />
+                                                        <input type="text" class="form-control" name="jamterima" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Suhu Terima</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="suhuterima" value="2" disabled="true" />
+                                                        <input type="text" class="form-control" name="suhuterima" disabled="true" />
                                                     </div>
                                                 </div>
 
@@ -366,63 +366,63 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Nama Pasien</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="namapasien" value="Riki" disabled="true" />
+                                                        <input type="text" class="form-control" name="namapasien" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Lahir</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tglpasien" value="23/08/1990" disabled="true" />
+                                                        <input type="text" class="form-control" name="tglpasien" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Jenis Kelamin</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="jenkelpasien" value="L" disabled="true" />
+                                                        <input type="text" class="form-control" name="jenkelpasien" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Golongan Darah</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="goldarpasien" value="A" disabled="true" />
+                                                        <input type="text" class="form-control" name="goldarpasien" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Rumah Sakit</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="rumahsakit" value="RS Dr.Soetomo" disabled="true" />
+                                                        <input type="text" class="form-control" name="rumahsakit" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal Transfusi</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="tgltransfusi" value="05/09/2015" disabled="true" />
+                                                        <input type="text" class="form-control" name="tgltransfusi" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Mulai Transfusi</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="mulaitransfusi" value="13:30" disabled="true" />
+                                                        <input type="text" class="form-control" name="mulaitransfusi" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Selesai Transfusi</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="selesaitransfusi" value="13:45" disabled="true" />
+                                                        <input type="text" class="form-control" name="selesaitransfusi" disabled="true" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Kualitas Darah</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="kualitas" value="Baik" disabled="true" />
+                                                        <input type="text" class="form-control" name="kualitas" disabled="true" />
                                                     </div>
                                                 </div>
                                                 
@@ -444,7 +444,69 @@ Purchase: http://wrapbootstrap.com
         <!-- Main Container -->
 
     </div>
+    <script type="text/javascript">
+        function cekkode(){
+            var nilai = document.getElementById('nomorproduksi').value;
+            
+            $.getJSON('<?php echo base_url(); ?>ajax/ambilproduksi/' + nilai,
+              function (data) {             
+                //console.log(data);
+                var tglprod = data[0]["waktu_produksi"];
+                var expired = data[0]["waktu_kadaluarsa"];
+                var jenis = data[0]["jenis_komponen"];
+                var nokantung = data[0]["id_kantung"];
+                $('#tglprod').val(tglprod);
+                $('#expired').val(expired);
+                $('#komponen').val(jenis);
 
+                $.getJSON('<?php echo base_url(); ?>ajax/tambahdetail/' + nokantung,
+                  function (data) {             
+                    var jenis = data[0]["jenis"];
+                    var hiv = data[0]["hiv"];
+                    var sifilis = data[0]["sifilis"];
+                    var hepatitis = data[0]["hepatitis"];
+                    var hcv = data[0]["hcv"];
+                    var nomor_donor = data[0]["nomor_donor"];
+                    
+                    $('#jenis').val(jenis);
+                    $('#hiv').val(hiv);
+                    $('#sifilis').val(sifilis);
+                    $('#hepatitis').val(hepatitis);
+                    $('#hcv').val(hcv);
+                    $('#kodedonor').val(nomor_donor);
+
+                    $.getJSON('<?php echo base_url(); ?>ajax/ambilriwayat/' + nomor_donor,
+                      function (data) {             
+                        var nama = data[0]["nama"];
+                        var tanggal_lahir = data[0]["tanggal_lahir"];
+                        var golongan_darah = data[0]["golongan_darah"];
+                        var rhesus = data[0]["rhesus"];
+                                                
+                        $('#nama').val(nama);
+                        $('#tgl').val(tanggal_lahir);
+                        $('#goldar').val(golongan_darah);
+                        $('#rhesus').val(rhesus);
+                        
+                      }
+                    ).fail(function() {console.log('error fak')});
+
+                  }
+                ).fail(function() {console.log('error fak')});
+
+                $.getJSON('<?php echo base_url(); ?>ajax/ambilaftap/' + nokantung,
+                  function (data) {             
+                    var tglaftap = data[0]["tanggal_aftap"];
+                    
+                    $('#tglaftap').val(tglaftap);
+                  }
+                ).fail(function() {console.log('error fak')});
+
+              }
+            ).fail(function() {console.log('error fak')});
+
+
+        }
+    </script>
     <!--Basic Scripts-->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>

@@ -18,17 +18,26 @@
         //$this->load->view('home_utd');
     }
     
-    public function daftarbaru(){
+    public function daftarbaru($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+        
         $this->load->model('pendonor');
         $data['id'] = $this->pendonor->ambilmaxid()+1;
-        $data['hasil'] = "0";
+        $data['hasil'] = $hasil;
 
         $this->load->view('daftarbaru', $data);
     }
 
-    public function daftarlama(){
+    public function daftarlama($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+                
         $this->load->model('pendonor');
         $data['id'] = $this->pendonor->ambilmaxdaftar()+1;
+        $data['hasil'] = $hasil;
 
         $this->load->view('daftarlama', $data);
     }

@@ -45,7 +45,7 @@ Purchase: http://wrapbootstrap.com
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body bgcolor="#AC193D" onload="generateDaftar()">
+<body bgcolor="#AC193D" onload="kodependaftaran()">
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loader"></div>
@@ -159,6 +159,30 @@ Purchase: http://wrapbootstrap.com
                     <!--Header Buttons End-->
                 </div>
                 <!-- /Page Header -->
+
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Pendaftaran Pendonor Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Pendaftaran Pendonor Gagal.
+                    </div>
+                  <?php }
+                ?>
+
                 <!-- Page Body -->
                 <div class="page-body" >
                     <div class="row">
@@ -182,7 +206,7 @@ Purchase: http://wrapbootstrap.com
                                                     <label class="col-lg-3 control-label">Nomor Pendaftaran</label>
                                                     <div class="col-lg-6">
                                                         <input type="text" class="form-control" id="nopendaftaran" disabled="true" />
-                                                        <input type="hidden" class="form-control" name="nopendaftaran1" id="nopendaftaran1"  />
+                                                        <input type="hidden" class="form-control" name="nopendaftaran1" id="nopendaftaran1" />
                                                     </div>
                                                 </div>
 
@@ -301,14 +325,34 @@ Purchase: http://wrapbootstrap.com
 
     <script type="text/javascript">
 
-        function generateDaftar(){
+       /* function generateDaftar(){
             var d = new Date();
             var nomor = '101'+d.getDate()+ parseInt(d.getMonth()+1)+d.getFullYear()+ '000' + <?php echo $id;?>;
             $('#nopendaftaran').val(nomor);
             $('#nopendaftaran1').val(nomor);
 //            document.getElementsByTagName('nopendaftaran').value = nomor;
-        }
+        }*/
+        function kodependaftaran(){
+            var d = new Date();
+            var tahun = d.getFullYear();
+            tahun = tahun % 100;
+            var tanggal = d.getDate();
+            var bulan = parseInt(d.getMonth()+1);
 
+            if (d.getDate() < 10) {
+                tanggal = '0'+tanggal;
+            }
+
+            if (bulan < 10) {
+                bulan = '0' + bulan;
+            }
+
+            var kodedaftar = '103'+tanggal+bulan+tahun+'<?php echo $id; ?>';
+            document.getElementById('nopendaftaran').value = kodedaftar;
+            document.getElementById('nopendaftaran1').value = kodedaftar;
+
+
+        }
 
         function getTanggal(){
             var d = new Date();
@@ -341,6 +385,7 @@ Purchase: http://wrapbootstrap.com
             var waktu = jam+':'+ menit;
             return waktu;
         }
+
 
         function cekkodedonor(){
             var nilai = document.getElementById('kode').value;

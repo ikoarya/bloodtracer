@@ -975,26 +975,26 @@
                 <ul class="nav sidebar-menu">
                     <!--Dashboard-->
                     <li>
-                        <a href="home.html">
+                        <a href="<?php echo base_url(); ?>">
                             <i class="menu-icon glyphicon glyphicon-home"></i>
                             <span class="menu-text"> Home </span>
                         </a>
                     </li>
                     <!--Widgets-->
                     <li>
-                        <a href="penerimaanfaktur.html">
+                        <a href="<?php echo base_url(); ?>produksi/terimafaktur">
                             <i class="menu-icon fa fa-pencil-square-o"></i>
                             <span class="menu-text"> Penerimaan Faktur </span>
                         </a>
                     </li>
                     <li>
-                        <a href="produksikomponendarah.html">
+                        <a href="<?php echo base_url(); ?>produksi/produksidarah">
                             <i class="menu-icon fa fa-table"></i>
                             <span class="menu-text"> Produksi Komponen </span>
                         </a>
                     </li>
                     <li>
-                        <a href="penelusurankantung.html">
+                        <a href="<?php echo base_url(); ?>produksi/telusurkantung">
                             <i class="menu-icon fa fa-table"></i>
                             <span class="menu-text"> Penelusuran Kantung </span>
                         </a>

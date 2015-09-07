@@ -17,16 +17,28 @@
         }
     }
     
-    public function formaftap(){
+    public function formaftap($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+
+
         $this->load->model('Darah');
         $data['id'] = $this->Darah->ambilmaxaftap()+1;
+        $data['hasil'] = $hasil;
 
         $this->load->view('formaftap', $data);
     }
 
-    public function buatfaktur(){
+    public function buatfaktur($hasil = null){
+        if($this->session->userdata('pass_pengguna') == null) {
+            redirect(base_url() . 'basecon');
+        }
+
+
         $this->load->model('Faktur');
         $data['id'] = $this->Faktur->ambilmaxfaktur()+1;
+        $data['hasil'] = $hasil;
 
         $this->load->view('pembuatanfaktur', $data);
     }
@@ -50,17 +62,15 @@
         $this->load->model('Kantung');
 
         if($this->Darah->inputAftap($noaftap, $nomorpendaf, $nokantung, $jeniskantung, $asal, $tgl, $waktu, $petugas, $keterangan)){
-            echo "Berhasil coy";
+            if($this->Kantung->inputKantung($nokantung, $nomorpendaf, $jeniskantung, $tgl, $waktu)){
+                $hasil = 'sukses';
+                redirect('aftap/formaftap/'. $hasil);
+            }
         }
         else{
-            echo "Gagal";
-        }
-
-        if($this->Kantung->inputKantung($nokantung, $nomorpendaf, $jeniskantung, $tgl, $waktu)){
-            echo "Berhasil tahap 2";
-        }
-        else{
-            echo "gagal tahap 2";
+            $hasil = 'gagal';
+            redirect('aftap/formaftap/'. $hasil);
+            
         }
 
     }
@@ -92,20 +102,12 @@
 
         $this->load->model('Faktur');
         if($this->Faktur->pembuatanfaktur($nofaktur, $tanggal, $waktu, $asal, $petugas, $itemlist)){
-            echo "berhasil tahap 1";
+            $hasil = 'sukses';
+            redirect('aftap/buatfaktur/'. $hasil);
         }
         else{
-            echo "gagal tahap 1";
+            $hasil = 'sukses';
+            redirect('aftap/buatfaktur/'. $hasil);
         }
-
-        
-
-
-
-
-
-
-    }
-
-   
+    }   
  }

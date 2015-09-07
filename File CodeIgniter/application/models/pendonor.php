@@ -7,9 +7,9 @@ Class Pendonor extends CI_Model {
 	}
 
 	public function ambilmaxid(){
-		$this->db->select_max('nomor_donor');
+		$this->db->select_max('id_donor');
 		$query = $this->db->get('donor');
-		return $query->row()->nomor_donor;
+		return $query->row()->id_donor;
 	}
 
 	public function ambilmaxdaftar(){
@@ -26,7 +26,7 @@ Class Pendonor extends CI_Model {
 	}
 
 
-	public function tambahpendonor($kode, $namapendonor, $tanggallahir, $tempatlahir, $jeniskelamin, $agama, $pekerjaan, $golongandarah, $alamat, $kodepos, $wilayah, $noid, $jenisidentitas)
+	public function tambahpendonor($id, $kode, $namapendonor, $tanggallahir, $tempatlahir, $jeniskelamin, $agama, $pekerjaan, $golongandarah, $alamat, $kodepos, $wilayah, $noid, $jenisidentitas)
 	{
 
 		if($kode == "0"){
@@ -34,6 +34,7 @@ Class Pendonor extends CI_Model {
 		}
 		
 		$data = array (
+			'id_donor' => $id,
 			'nomor_donor' => $kode,
 			'nama' => $namapendonor,
 			'jenis_kelamin' => $jeniskelamin,
@@ -46,12 +47,12 @@ Class Pendonor extends CI_Model {
 			'wilayah' => $wilayah,
 			'golongan_darah' => $golongandarah,
 			'noid' => $noid,
-			'jenid' => $jenisidentitas
+			'jenid' => $jenisidentitas,
+			'jml_donor' => "0"
 		);
 		
 		if ($this->db->insert('donor', $data)) {
-			$data['hasil'] = "1";
-			return $data;
+			return true;
 		}
 		else{
 			return false;

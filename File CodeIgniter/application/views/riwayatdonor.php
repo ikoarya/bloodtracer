@@ -316,7 +316,7 @@ Purchase: http://wrapbootstrap.com
                 document.getElementById('identitas').innerHTML = '<tr><td>'+ identitas +' </td><td>'+ nilai +' </td><td>'+ tanggalterakhir +' </td></tr>';
 
               }
-            ).fail(function() {console.log('error fak')});
+            ).fail(function() {alert('Data Tidak Ditemukan')});
         }
     </script>
     <!--Basic Scripts-->

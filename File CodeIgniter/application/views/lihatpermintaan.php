@@ -276,63 +276,49 @@ Purchase: http://wrapbootstrap.com
 
     </div>
     <script type="text/javascript">
+        function coba(indeks){
+            var nilai = indeks;
+            document.getElementById('detail').innerHTML = '';
+            $.getJSON('<?php echo base_url(); ?>ajax/lihatpermintaan/' + nilai,
+              function (data) {                
+                
+                data.forEach(
+                   function (element, index, array) {
+                    var rows = $('tr');
+                    var mylist = document.getElementById("detail");
+                    var row = document.createElement("tr");
 
-    
-    function coba(indeks){
+                    var cell = document.createElement("td");
+                    var cellText = document.createTextNode(element.noform);
+                    cell.appendChild(cellText);
 
-        //var aku = indeks;
-        //var dia = document.getElementById(aku).innerText;
-        
-        var flag = 0;
-        document.getElementById('detail').innerHTML = '';
-        <?php foreach ($detaillist->result() as $row) { 
-            $hasilform = $row->noform;
-            $jenis = $row->jenisreq;
-            $golongan = $row->goldarreq;
-            $jumlah = $row->jumlahreq;
-         ?>
+                    var cell2 = document.createElement("td");
+                    var cellText2 = document.createTextNode(element.jenisreq);
+                    cell2.appendChild(cellText2);
 
-        var mylist = document.getElementById("detail");
-        var row = document.createElement("tr");
+                    var cell3 = document.createElement("td");
+                    var cellText3 = document.createTextNode(element.goldarreq);
+                    cell3.appendChild(cellText3);
 
-        var hasil = "<?php echo $hasilform;?>";
-        var jenis = "<?php echo $jenis;?>";
-        var golongan = "<?php echo $golongan;?>";
-        var jumlah = "<?php echo $jumlah;?>";
+                    var cell4 = document.createElement("td");
+                    var cellText4 = document.createTextNode(element.jumlahreq);
+                    cell4.appendChild(cellText4);
 
-        var cell = document.createElement("td");
-        cell.id = hasil;
-        var cellText = document.createTextNode(hasil);
-        cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    row.appendChild(cell2);
+                    row.appendChild(cell3);
+                    row.appendChild(cell4);
+                    mylist.appendChild(row);
+                   }
+                 );
 
-        var cell2 = document.createElement("td");
-        var cellText2 = document.createTextNode(jenis);
-        cell2.appendChild(cellText2);
 
-        var cell3 = document.createElement("td");
-        var cellText3 = document.createTextNode(golongan);
-        cell3.appendChild(cellText3);
+              }
+            ).fail(function() {console.log('error fak')});
 
-        var cell4 = document.createElement("td");
-        var cellText4 = document.createTextNode(jumlah);
-        cell4.appendChild(cellText4);
-
-        if (hasil == indeks) {
-            
-            row.appendChild(cell);
-            row.appendChild(cell2);
-            row.appendChild(cell3);
-            row.appendChild(cell4);
-            mylist.appendChild(row);
-           
         }
-        
-        //document.getElementById('detail').innerHTML = '<tr><td id="<?=$row->noform?>"><?php echo $hasilform; ?></td><td><?=$row->jenisreq?></td><td><?=$row->goldarreq?></td><td><?=$row->jumlahreq?></td></tr>';
-        <?php } ?>
-
-        
-        
-    }
+    
+    
     </script>
    
     <!--Basic Scripts-->

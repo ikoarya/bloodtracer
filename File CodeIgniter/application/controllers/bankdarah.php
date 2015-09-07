@@ -48,8 +48,9 @@
         $this->load->view('permintaanrs');
     }
     
-    public function permintaanbd(){
-        $this->load->view('permintaanbd');
+    public function permintaanbd($hasil = null){
+        $data['hasil'] = $hasil;
+        $this->load->view('permintaanbd', $data);
     }
     public function lihatpermintaan(){
         $this->load->model('darah');

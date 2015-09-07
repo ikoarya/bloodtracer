@@ -41,7 +41,7 @@ Purchase: http://wrapbootstrap.com
 </head>
 <!-- /Head -->
 <!-- Body -->
-<body bgcolor="#AC193D">
+<body bgcolor="#AC193D" onload="autoFill()">
     <!-- Loading Container -->
     <div class="loading-container">
         <div class="loader"></div>
@@ -155,6 +155,29 @@ Purchase: http://wrapbootstrap.com
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
+                <?php
+                  if($hasil == 'sukses') { ?>
+                    <br>
+                    <div class="alert alert-success fade in" align="center">
+                      <button class="close" data-dismiss="alert">
+                          ×
+                      </button>
+                      <i class="fa-fw fa fa-check"></i>
+                      <strong>Sukses</strong> Permintaan Darah Berhasil.
+                    </div>
+                  <?php } 
+                  elseif ($hasil == 'gagal') { ?>
+                    <br>
+                    <div class="alert alert-danger fade in radius-bordered alert-shadowed">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-times"></i>
+                        <strong>Gagal!</strong> Permintaan Darah Gagal.
+                    </div>
+                  <?php }
+                ?>
+
                 <div class="page-body" >
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -195,18 +218,8 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Tanggal</label>
                                                     <div class="col-lg-6">
-                                                        <input type="date" class="form-control" name="tanggal" placeholder="Tanggal"
-                                                               data-bv-message="Nomor tidak Valid"
-                                                               data-bv-notempty="true"
-                                                               data-bv-notempty-message="Nomor harus diisi"
-                                                               data-bv-regexp="true"
-                                                               data-bv-regexp-regexp="[0-9]"
-                                                               data-bv-regexp-message="Nomor Form hanya terdiri dari angka"
-                                                               data-bv-stringlength="true"
-                                                               data-bv-stringlength-min="1"
-                                                               data-bv-stringlength-max="100"
-                                                               data-bv-stringlength-message="Nomor Harus Diisi"
-                                                                />
+                                                        <input type="text" class="form-control" name="tanggal1" id="tanggal1" disabled="true" />
+                                                        <input type="hidden" class="form-control" name="tanggal" id="tanggal" />
                                                     </div>
                                                 </div>
 
@@ -250,7 +263,7 @@ Purchase: http://wrapbootstrap.com
                                                 <div class="form-group">
                                                     <label class="col-lg-3 control-label">Petugas</label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" class="form-control" name="Petugas" placeholder="Petugas RS"
+                                                        <input type="text" class="form-control" name="petugas" placeholder="Petugas RS"
                                                                data-bv-message="Petugas Tidak Valid"
                                                                data-bv-notempty="true"
                                                                data-bv-notempty-message="Petugas harus diisi"
@@ -362,6 +375,46 @@ Purchase: http://wrapbootstrap.com
 
     <script type="text/javascript">
 
+      function getTanggal(){
+            var d = new Date();
+            var tanggal = d.getDate();
+            var bulan = parseInt(d.getMonth()+1);
+
+
+            if (d.getDate() < 10) {
+                var tanggal = '0'+d.getDate();
+            }
+
+            if (bulan < 10) {
+                var bulan = '0' + bulan;
+            }
+            var waktudaftar = parseInt(d.getFullYear())+'-'+bulan +'-'+ tanggal;
+            return waktudaftar;
+        }
+
+        function autoFill(){
+            var tanggal = getTanggal();
+            
+            var d = new Date();
+
+            var tahunkode = d.getFullYear();
+            tahunkode = tahunkode % 100;
+            var tanggalkode = d.getDate();
+            var bulankode = parseInt(d.getMonth()+1);
+
+            if (d.getDate() < 10) {
+                tanggalkode = '0'+tanggalkode;
+            }
+
+            if (bulankode < 10) {
+                bulankode = '0' + bulankode;
+            }
+
+            document.getElementById('tanggal').value = tanggal;
+            document.getElementById('tanggal1').value = tanggal;
+            
+        }
+
         function tambahdetail(){
           var rows = $('tr');
           var mylist = document.getElementById("detail");
@@ -393,7 +446,7 @@ Purchase: http://wrapbootstrap.com
             mylist.appendChild(row);
           }
           
-          alert(rows.length);
+          //alert(rows.length);
           
         }
         

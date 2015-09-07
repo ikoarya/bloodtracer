@@ -172,4 +172,15 @@ Class Darah extends CI_Model {
 		return $query->row()->id_pengiriman;
 	}
 
+	public function lihatpermintaan($param, $num=0, $rand=false){
+		$this->db->where( 'noform = '.$param );
+		if ($rand)
+			$this->db->order_by( 'rand()' );
+		if ($num != 0)
+			$query = $this->db->get('detail_permintaan', $num);
+		else
+			$query = $this->db->get('detail_permintaan');
+		return $query;
+	}
+
 }

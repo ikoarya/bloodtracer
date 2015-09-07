@@ -45,10 +45,12 @@
 
         $this->load->model('Darah');
         if($this->Darah->permintaan($nomor, $tanggal, $kode, $tujuan, $petugas, $itemlist)){
-            echo "berhasil";
+            $hasil = 'sukses';
+            redirect('bankdarah/permintaanbd/'. $hasil);
         }
         else{
-            echo "gagal";
+            $hasil = 'sukses';
+            redirect('bankdarah/permintaanbd/'. $hasil);
         }
         
     }

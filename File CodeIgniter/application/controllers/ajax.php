@@ -54,6 +54,12 @@ class Ajax extends CI_Controller {
     $query = $this->Kantung->ambilstok($nilai);
     echo json_encode($query->result_array());
   }
+
+  public function lihatpermintaan($kode){
+    $this->load->model('Darah');
+    $query = $this->Darah->lihatpermintaan($kode);
+    echo json_encode($query->result());
+  }
  
 }
 
